@@ -1,29 +1,9 @@
-import sys, pytest
+import pytest
 
 import pandas as pd
 
-# sys.path('D:\GIT\photo\photovoltaics\source')
 
 from photo.photovoltaics.source import data_manager
-
-@pytest.fixture(scope="module")
-def new_dm_instance():
-    oData = data_manager.DataMgr()
-    return oData
-
-@pytest.fixture(scope="module")
-def test_data(new_dm_instance):
-
-    """
-    "%Y-%m-%d %H:%M:%S"
-    """
-    data_list = [
-        {'Date': "1992-06-10 07:30:30", "kWh": 1000, "Type": "production"},
-        {'Date': "1993-10-03 11:44:44", "kWh": 1200, "Type": "consumption"}
-
-    ]
-
-    return new_dm_instance.add_data_manually(data_list)
 
 
 def test_new_instance_wrong_filepath_ext():
@@ -52,12 +32,20 @@ def test_not_empty_data_frame(test_data):
     # print(dir(test_data))
     assert len(test_data) != 0
 
+def test_tmp_path(tmp_path):
+    """function scope by default"""
+    file = tmp_path / "file.txt"
+    print(file)
+    file.write_text("Hello")
+    assert file.read_text() == "Hello"
 
-
-
-#
-#
-
+def test_tmp_path_factory(tmp_path_factory):
+    """session scope by default"""
+    path = tmp_path_factory.mktemp("sub")
+    print(path)
+    file = path / "file.txt"
+    file.write_text("Hello")
+    assert file.read_text() == "Hello"
 
 
 # def test_sys_path():
