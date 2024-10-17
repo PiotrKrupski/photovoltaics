@@ -5,9 +5,11 @@ import openpyxl
 import os
 
 
-DATA_PATH = r"/photo/photovoltaics/Data"
+# DATA_PATH =
 
 class DataMgr:
+
+    DATA_PATH = r"D:\GIT\photo\photovoltaics\Data"
 
     def __init__(self, filepath: str = DATA_PATH):
         if not isinstance(filepath, str):
@@ -61,6 +63,12 @@ class DataMgr:
         else:
             raise TypeError("Wrong format of data")
 
+        self.data['Date'].str.replace('24:00', '00:00')
+        self.data['Date'] = pd.to_datetime(self.data['Date'])
+        self.data['month'] = self.data['Date'].dt.month
+        self.data['year'] = self.data['Date'].dt.year
+
+
         return self.data
 
 
@@ -94,13 +102,13 @@ class DataMgr:
     def save_dataframe_as_pickle(self):
         now = datetime.datetime.now()
         formatted_date_time = now.strftime('%d_%m_%Y_%H_%M_%S')
-        self.data.to_pickle(DATA_PATH + os.path.sep + f"{formatted_date_time}.pickle")
+        self.data.to_pickle(DataMgr.DATA_PATH + os.path.sep + f"{formatted_date_time}.pickle")
 
     # @staticmethod
     def load_most_recent_data(self, extension: str = ".pickle"):
         most_recent_file = None
         most_recent_timestamp = None
-        for file in os.listdir(self.filepath):
+        for file in os.listdir(DataMgr.DATA_PATH):
             if file.endswith(extension):
                 timestamp_str = file[:-7]  # Remove the ".pickle" extension
                 timestamp = datetime.datetime.strptime(timestamp_str, "%d_%m_%Y_%H_%M_%S")
@@ -109,9 +117,13 @@ class DataMgr:
                     most_recent_timestamp = timestamp
 
         if most_recent_file:
-            self.data = pd.read_pickle(DATA_PATH + os.path.sep + most_recent_file)
+            self.data = pd.read_pickle(DataMgr.DATA_PATH + os.path.sep + most_recent_file)
         else:
             print('There is no saved data to be loaded')
+
+    def load_data(self, data_filepath: str):
+        self.data = pd.read_pickle(data_filepath)
+
 
     #TODO: dodac walidacje w przypadku gdy dane juz są przetworzone
     #TODO: gdy
@@ -151,4 +163,29 @@ class DataMgr:
 
 if __name__ == "__main__":
     oData = DataMgr()
-    oData.add_data_manually()
+
+    data_list = [
+        {'Date': "1992-06-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-06-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-06-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-06-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-06-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-06-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-06-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-06-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-06-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-06-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-06-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-06-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-07-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-07-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-07-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-07-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-07-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-07-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+        {'Date': "1992-07-10 07:30:30", "kWh": 2000, "Type": "production"},
+        {'Date': "1992-07-10 11:44:44", "kWh": 1000, "Type": "consumption"},
+    ]
+
+    oData.add_data_manually(data_list)
+    # oData.save_dataframe_as_pickle()
