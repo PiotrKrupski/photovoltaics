@@ -5,8 +5,6 @@ import openpyxl
 import os
 
 
-# DATA_PATH =
-
 class DataMgr:
 
     DATA_PATH = r"D:\GIT\photo\photovoltaics\Data"
