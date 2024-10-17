@@ -3,6 +3,7 @@ import datetime
 import pandas as pd
 import os
 
+
 class DataMgr:
 
     DATA_PATH = r"D:\GIT\photo\photovoltaics\Data"

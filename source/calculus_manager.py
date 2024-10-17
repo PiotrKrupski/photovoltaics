@@ -27,12 +27,10 @@ class CalculusManager(DataManager):
         self.production = self.data[self.data["Type"] == "production"]
 
     def total_production(self):
-        pass
+        return 'Not implemented yet'
 
     def total_consumption(self):
-        pass
-
-
+        return 'Not implemented yet'
 
     def yearly_consumption(self):
         if self.consumption is None:
