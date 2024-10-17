@@ -1,11 +1,7 @@
 import datetime
 
 import pandas as pd
-import openpyxl
 import os
-
-
-# DATA_PATH =
 
 class DataMgr:
 
@@ -188,4 +184,3 @@ if __name__ == "__main__":
     ]
 
     oData.add_data_manually(data_list)
-    # oData.save_dataframe_as_pickle()
