@@ -12,24 +12,18 @@ def test_new_instance_wrong_filepath_ext():
         data_manager.DataMgr(filepath=1234)
 
 def test_new_instance(new_dm_instance):
-    # result = data_manager.DataMgr()
-    # print(type(result.data))
     assert isinstance(new_dm_instance.data, pd.DataFrame)
 
 def test_new_instance_columns(new_dm_instance):
-    # result = data_manager.DataMgr()
     assert new_dm_instance.data.columns.to_list() == ['Date', 'kWh', 'Type', 'month', 'year']
-    # ['Date', 'kWh', 'Type', 'month', 'year']
 
 def test_new_instance_filepath(new_dm_instance):
-    # result = data_manager.DataMgr()
     assert isinstance(new_dm_instance.filepath, str)
 
 def test_empty_data_frame(new_dm_instance):
     assert len(new_dm_instance.data) == 0
 
 def test_not_empty_data_frame(test_data):
-    # print(dir(test_data))
     assert len(test_data) != 0
 
 def test_tmp_path(tmp_path):
