@@ -9,7 +9,6 @@ def new_dm_instance():
 
 @pytest.fixture(scope="function")
 def test_data(new_dm_instance):
-
     """
     Provides simple dataset"
     """
