@@ -65,9 +65,7 @@ class DataMgr:
         self.data['month'] = self.data['Date'].dt.month
         self.data['year'] = self.data['Date'].dt.year
 
-
         return self.data
-
 
     @staticmethod
     def validate_date_format(new_rows, date_format="%Y-%m-%d %H:%M:%S"):
@@ -101,7 +99,6 @@ class DataMgr:
         formatted_date_time = now.strftime('%d_%m_%Y_%H_%M_%S')
         self.data.to_pickle(DataMgr.DATA_PATH + os.path.sep + f"{formatted_date_time}.pickle")
 
-    # @staticmethod
     def load_most_recent_data(self, extension: str = ".pickle"):
         most_recent_file = None
         most_recent_timestamp = None
@@ -125,7 +122,7 @@ class DataMgr:
     #TODO: dodac walidacje w przypadku gdy dane juz są przetworzone
     #TODO: gdy
     def column_value_modification(self, column: str, new_column: str, opt_dataframe = None):
-        a =5
+
         if opt_dataframe is not None:
             opt_dataframe.rename(columns={column: new_column}, inplace=True)
         else:

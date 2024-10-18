@@ -1,7 +1,7 @@
 name: photovoltaics App Tests
 
 on:
-  pull_requests:
+  pull_request:
       branches:
         - main
 
@@ -16,9 +16,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.11, 3.12]
-
-    env:
-      MODE: "dev"
 
     steps:
       - uses: actions/checkout@v3
