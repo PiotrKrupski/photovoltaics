@@ -8,7 +8,7 @@ class DataMgr:
 
     DATA_PATH = r"D:\GIT\photo\photovoltaics\Data"
 
-    def __init__(self, filepath: str = DATA_PATH):
+    def __init__(self, filepath: str = DATA_PATH, *args, **kwargs):
         if not isinstance(filepath, str):
             raise TypeError("wrong data type of filepath")
         self.filepath = filepath

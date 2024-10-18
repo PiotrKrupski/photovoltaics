@@ -11,6 +11,9 @@ def test_new_instance_wrong_filepath_ext():
     with pytest.raises(TypeError, match=match_regex):
         data_manager.DataMgr(filepath=1234)
 
+def test_unspecified_arguments_for_DataMgr_init():
+    data_manager.DataMgr('abc', abc=1)
+
 def test_new_instance(new_dm_instance):
     assert isinstance(new_dm_instance.data, pd.DataFrame)
 
@@ -23,8 +26,17 @@ def test_new_instance_filepath(new_dm_instance):
 def test_empty_data_frame(new_dm_instance):
     assert len(new_dm_instance.data) == 0
 
-def test_not_empty_data_frame(test_data):
-    assert len(test_data) != 0
+def test_negative_validate_date_format(new_dm_instance):
+    match_regex = "Wrong format of data"
+    with pytest.raises(TypeError, match=match_regex):
+        data_list = [
+            {'Date': "1992-06-10 07:30:30", "kWh": 1000, "Type": "production"},
+            {'Date': "1993:10:03-11:44:44", "kWh": 1200, "Type": "consumption"}]
+        new_dm_instance.add_data_manually(data_list)
+
+
+def test_not_empty_data_frame(ok_test_data):
+    assert len(ok_test_data) != 0
 
 def test_tmp_path(tmp_path):
     """function scope by default"""
@@ -40,6 +52,9 @@ def test_tmp_path_factory(tmp_path_factory):
     file = path / "file.txt"
     file.write_text("Hello")
     assert file.read_text() == "Hello"
+
+
+
 
 
 # def test_sys_path():
