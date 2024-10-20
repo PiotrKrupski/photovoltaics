@@ -3,7 +3,7 @@ import pytest
 import pandas as pd
 
 
-from photo.photovoltaics.source import data_manager
+from .photovoltaics.source import data_manager
 
 
 def test_new_instance_wrong_filepath_ext():
@@ -52,10 +52,6 @@ def test_tmp_path_factory(tmp_path_factory):
     file = path / "file.txt"
     file.write_text("Hello")
     assert file.read_text() == "Hello"
-
-
-
-
 
 # def test_sys_path():
 #     print("sys.path: ")
