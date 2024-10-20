@@ -1,15 +1,13 @@
 import pytest
-
 import pandas as pd
+from managers import data_manager
 
-
-from photovoltaics.source import data_manager
-
+print(data_manager.DataMgr())
 
 def test_new_instance_wrong_filepath_ext():
     match_regex = "wrong data type of filepath"
     with pytest.raises(TypeError, match=match_regex):
-        data_manager.DataMgr(filepath=1234)
+        data_manager.DataMgr(filepath=123)
 
 def test_unspecified_arguments_for_DataMgr_init():
     data_manager.DataMgr('abc', abc=1)
@@ -52,10 +50,6 @@ def test_tmp_path_factory(tmp_path_factory):
     file = path / "file.txt"
     file.write_text("Hello")
     assert file.read_text() == "Hello"
-
-
-
-
 
 # def test_sys_path():
 #     print("sys.path: ")

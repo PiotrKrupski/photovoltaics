@@ -1,6 +1,5 @@
 import pytest, time
-
-from photo.photovoltaics.source import data_manager
+from managers import data_manager
 
 @pytest.fixture(scope="module")
 def new_dm_instance():
