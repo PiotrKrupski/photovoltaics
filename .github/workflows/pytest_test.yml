@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./Tests/
@@ -30,4 +30,4 @@ jobs:
           pip install -r ../requirements.txt
 
       - name: Test App Code
-        run: python ./data_manager_test.py
+        run: pytest
