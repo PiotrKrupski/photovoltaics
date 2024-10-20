@@ -3,7 +3,7 @@ import pytest
 import pandas as pd
 
 
-from photo.photovoltaics.source import data_manager
+from photovoltaics.source import data_manager
 
 
 def test_new_instance_wrong_filepath_ext():
