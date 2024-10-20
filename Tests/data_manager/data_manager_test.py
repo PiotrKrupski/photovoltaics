@@ -1,7 +1,5 @@
 import pytest
 import pandas as pd
-
-
 from .photovoltaics.source import data_manager
 
 
