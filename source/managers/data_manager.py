@@ -6,7 +6,7 @@ import os
 
 class DataMgr:
 
-    DATA_PATH = r"D:\GIT\photo\photovoltaics\Data"
+    DATA_PATH = r"/Data"
 
     def __init__(self, filepath: str = DATA_PATH, *args, **kwargs):
         if not isinstance(filepath, str):

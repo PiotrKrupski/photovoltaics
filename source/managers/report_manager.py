@@ -1,7 +1,7 @@
 import pandas as pd
 from typing import Union, List
-from photo.photovoltaics.source.data_manager import DataMgr
-from photo.photovoltaics.source.calculus_manager import CalculusManager
+from data_manager import DataMgr
+from calculus_manager import CalculusManager
 
 class ReportMgr(DataMgr,CalculusManager):
 

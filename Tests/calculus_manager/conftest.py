@@ -1,6 +1,5 @@
 import pytest, time
-
-from .photovoltaics.source import data_manager
+import data_manager
 
 @pytest.fixture(scope="module")
 def new_cm_instance():

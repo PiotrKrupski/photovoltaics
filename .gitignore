@@ -1,3 +1,5 @@
 Data/
 /drafts
 /venv
+/source/build
+/source/managers.egg-info
